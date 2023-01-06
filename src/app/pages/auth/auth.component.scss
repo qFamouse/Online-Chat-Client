@@ -60,8 +60,13 @@
     }
   }
 
-}
+  &_signup-button {
+    &:disabled {
+      background: #949494;
+    }
+  }
 
+}
 #chk {
   display: none;
 }

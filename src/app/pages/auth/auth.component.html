@@ -3,13 +3,13 @@
     <input type="checkbox" id="chk" aria-hidden="true">
 
     <div class="auth_signup">
-      <form class="auth-form" [formGroup]="authFormGroup">
+      <form class="auth-form" [formGroup]="signUpFormGroup">
         <label class="auth-form_label auth-form_label__signup" for="chk" aria-hidden="true">Sign up</label>
 
         <mat-form-field>
           <mat-label>User name</mat-label>
           <input type="text" name="name" formControlName="name" placeholder="Your name?" matInput>
-          <mat-error *ngIf="authFormGroup.get('name')?.hasError('required')">
+          <mat-error *ngIf="signUpFormGroup.get('name')?.hasError('required')">
             Name is required
           </mat-error>
         </mat-form-field>
@@ -17,10 +17,10 @@
         <mat-form-field>
           <mat-label>Email</mat-label>
           <input type="email" name="email" formControlName="email" placeholder="Your email?" matInput>
-          <mat-error *ngIf="authFormGroup.get('email')?.hasError('required')">
+          <mat-error *ngIf="signUpFormGroup.get('email')?.hasError('required')">
             Email is required
           </mat-error>
-          <mat-error *ngIf="authFormGroup.get('email')?.hasError('email')">
+          <mat-error *ngIf="signUpFormGroup.get('email')?.hasError('email')">
             Wrong email
           </mat-error>
         </mat-form-field>
@@ -28,29 +28,29 @@
         <mat-form-field>
           <mat-label>Password</mat-label>
           <input type="password" name="password" formControlName="password" placeholder="Your password?" matInput>
-          <mat-error *ngIf="authFormGroup.get('password')?.hasError('required')">
+          <mat-error *ngIf="signUpFormGroup.get('password')?.hasError('required')">
             Password is required
           </mat-error>
-          <mat-error *ngIf="authFormGroup.get('password')?.hasError('pattern')">
+          <mat-error *ngIf="signUpFormGroup.get('password')?.hasError('pattern')">
             Easy password
           </mat-error>
         </mat-form-field>
 
-        <button mat-flat-button color="primary">Sign up</button>
+        <button class="auth-form_signup-button" [disabled]="signUpFormGroup.invalid" mat-flat-button color="primary">Sign up</button>
       </form>
     </div>
 
     <div class="auth_login">
-      <form class="auth-form" [formGroup]="authFormGroup">
+      <form class="auth-form" [formGroup]="loginFormGroup">
         <label class="auth-form_label auth-form_label__login" for="chk" aria-hidden="true">Login</label>
 
         <mat-form-field>
           <mat-label>Email</mat-label>
           <input type="email" name="email" formControlName="email" placeholder="Your email?" matInput>
-          <mat-error *ngIf="authFormGroup.get('email')?.hasError('required')">
+          <mat-error *ngIf="loginFormGroup.get('email')?.hasError('required')">
             Email is required
           </mat-error>
-          <mat-error *ngIf="authFormGroup.get('email')?.hasError('email')">
+          <mat-error *ngIf="loginFormGroup.get('email')?.hasError('email')">
             Wrong email
           </mat-error>
         </mat-form-field>
@@ -58,15 +58,9 @@
         <mat-form-field>
           <mat-label>Password</mat-label>
           <input type="password" name="password" formControlName="password" placeholder="Your password?" matInput>
-          <mat-error *ngIf="authFormGroup.get('password')?.hasError('required')">
-            Password is required
-          </mat-error>
-          <mat-error *ngIf="authFormGroup.get('password')?.hasError('pattern')">
-            Easy password
-          </mat-error>
         </mat-form-field>
 
-        <button mat-flat-button color="primary">Login</button>
+        <button [disabled]="loginFormGroup.invalid" mat-flat-button color="primary">Login</button>
       </form>
     </div>
   </div>

@@ -7,7 +7,7 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
 	styleUrls: ["./auth.component.scss"]
 })
 export class AuthComponent implements OnInit {
-	authFormGroup = new FormGroup({
+	signUpFormGroup = new FormGroup({
 		name: new FormControl("", [Validators.required]),
 		email: new FormControl("", [Validators.required, Validators.email]),
 		password: new FormControl("", [
@@ -18,7 +18,9 @@ export class AuthComponent implements OnInit {
 		])
 	});
 
-	login: boolean = false;
+	loginFormGroup = new FormGroup({
+		email: new FormControl("", [Validators.required, Validators.email])
+	});
 
 	constructor() {}
 
