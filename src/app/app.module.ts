@@ -9,6 +9,7 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MatButtonModule } from "@angular/material/button";
+import { ChatModule } from "./pages/chat/chat.module";
 
 @NgModule({
 	declarations: [AppComponent, AuthComponent],
@@ -20,7 +21,8 @@ import { MatButtonModule } from "@angular/material/button";
 		MatFormFieldModule,
 		MatInputModule,
 		ReactiveFormsModule,
-		MatButtonModule
+		MatButtonModule,
+		ChatModule
 	],
 	providers: [],
 	bootstrap: [AppComponent]

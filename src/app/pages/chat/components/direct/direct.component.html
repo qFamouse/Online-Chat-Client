@@ -59,6 +59,31 @@
 
   </div>
   <div class="conversation col-xs-9">
-
+    <div class="recipient conversation__recipient">
+      <div class="recipient__author">Author name</div>
+    </div>
+    <div class="conversation__messages">
+      <div class="message">message</div>
+      <div class="message">message</div>
+      <div class="message">message</div>
+      <div class="message">message</div>
+      <div class="message">message</div>
+      <div class="message">message</div>
+      <div class="message">message</div>
+      <div class="message">message</div>
+      <div class="message">message</div>
+      <div class="message">message</div>
+    </div>
+    <div class="place-to-post conversation__place-to-post">
+      <a class="place-to-post__attach">
+        <img src="assets/attach.svg" alt="pin">
+      </a>
+      <div class="place-to-post__message">
+        <textarea autosize [minRows]="1" [maxRows]="10" placeholder="Write a message..."></textarea>
+      </div>
+      <a class="place-to-post__send">
+        <img src="assets/send.svg" alt="send">
+      </a>
+    </div>
   </div>
 </div>
