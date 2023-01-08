@@ -1,5 +1,19 @@
 @import "flexboxgrid";
 
+* {
+  // Custom scroll
+  &::-webkit-scrollbar {
+    width: 6px;               /* scrollbar with */
+  }
+  &::-webkit-scrollbar-track {
+    background: #2f3841;        /* track color */
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #73797f;    /* thumb color */
+    border-radius: 20px;       /* thumb radius */
+  }
+}
+
 .direct {
   display: flex;
 }
@@ -25,7 +39,7 @@
       width: 80%;
       background: #242f3d;
       padding: 0.5em;
-      margin: 1em;
+      margin: 1em 0;
       border-radius: 0.3em;
       border: none;
       outline: none;
@@ -34,20 +48,8 @@
   }
 
   // Enable scroll
-  overflow-y: scroll;
-  //overflow-x: hidden;
-
-  // Custom scroll
-  &::-webkit-scrollbar {
-    width: 6px;               /* ширина scrollbar */
-  }
-  &::-webkit-scrollbar-track {
-    background: #2f3841;        /* цвет дорожки */
-  }
-  &::-webkit-scrollbar-thumb {
-    background-color: #73797f;    /* цвет плашки */
-    border-radius: 20px;       /* закругления плашки */
-  }
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .dialog {
@@ -61,7 +63,12 @@
     width: 50px;
     height: 50px;
     margin-right: 0.7em;
-    border-radius: 2em;
+
+    img {
+      width: 50px;
+      height: 50px;
+      border-radius: 2em;
+    }
   }
 
   &__author {
@@ -101,12 +108,79 @@
 
   &__messages {
     flex: 1;
+
+    // Enable scroll
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+}
+
+.message {
+  display: flex;
+  margin: 1em;
+
+  &__avatar {
+    width: 40px;
+    height: 40px;
+    margin-right: 1em;
+
+    img {
+      width: 40px;
+      height: 40px;
+      border-radius: 2em;
+    }
+  }
+
+  &__body {
+    padding: .5em 1em;
+    border-radius: 5px 16px 16px 16px;
+    position: relative;
+
+    &:after {
+      content: " ";
+      position: absolute;
+      left: -8px;
+      top: 0;
+
+      border-top: 10px solid transparent;
+      border-left: none;
+      //border-bottom: 10px solid transparent;
+    }
+
+    &--sender {
+      background-color: #2b5278;
+      border: 1px solid #2b5278;
+
+      &:after {
+        border-right: 10px solid #2b5278;
+      }
+    }
+
+    &--recipient {
+      background-color: #182533;
+      border: 1px solid #182533;
+
+      &:after {
+        border-right: 10px solid #182533;
+      }
+    }
+  }
+
+  &__text {
+    color: #f5f5f5;
+  }
+
+  &__time {
+    float: right;
+    color: #6d7f8f;
   }
 }
 
 .recipient {
   &__author {
+    padding: 10px;
     color: #f5f5f5;
+    font-size: 1.2em;
   }
 }
 
@@ -150,6 +224,14 @@
       resize: none;
       border: none;
       outline: none;
+
+      // Hide scroll
+      overflow-y: scroll; // if we use hidden then we cause use mouse middle button
+      overflow-x: hidden;
+
+      &::-webkit-scrollbar {
+        width: 0;
+      }
     }
   }
 }
