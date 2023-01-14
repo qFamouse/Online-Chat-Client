@@ -3,18 +3,12 @@
     <div class="dialogs__search">
       <input type="text" placeholder="Search">
     </div>
-    <div class="dialog">
-      <div class="dialog__avatar">
-        <img src="assets/no-avatar.png" alt="avatar">
-      </div>
-      <div class="dialog__author">My long name sssssssss</div>
-    </div>
-    <div class="dialog">
-      <div class="dialog__avatar">
-        <img src="assets/no-avatar.png" alt="avatar">
-      </div>
-      <div class="dialog__author">Author</div>
-    </div>
+    <app-dialog
+      [name]="'My long name'"
+    ></app-dialog>
+    <app-dialog
+      [name]="'Author'"
+    ></app-dialog>
   </div>
   <div class="conversation col-xs-9">
     <div class="recipient conversation__recipient">
