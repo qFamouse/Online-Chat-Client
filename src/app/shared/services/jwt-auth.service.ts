@@ -16,9 +16,9 @@ export class JwtAuthService {
 		let token = localStorage.getItem(JWT_KEYS.token);
 		return token != null && token.length > 0;
 	}
-	login(userName: string, password: string): Observable<JwtSession> {
+	login(email: string, password: string): Observable<JwtSession> {
 		const url = apiUserRoutes.login;
-		return this.apiService.post(url, { userName, password }).pipe(
+		return this.apiService.post(url, { email, password }).pipe(
 			tap((res: any) => this.setSession(res)),
 			shareReplay()
 		);
