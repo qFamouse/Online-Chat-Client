@@ -23,6 +23,7 @@
     position: relative;
     width: 100%;
     height: 100%;
+
   }
 
   &_login {
@@ -31,15 +32,8 @@
     border-radius: 60% / 10%;
     transform: translateY(-180px);
     transition: .8s ease-in-out;
-
-    & label {
-      color: #573b8a;
-      transform: scale(.6);
-    }
   }
-}
 
-.auth-form {
   &_label {
     color: #fff;
     font-size: 2.3em;
@@ -49,38 +43,23 @@
     cursor: pointer;
     transition: .5s ease-in-out;
 
-    &__signup {
+    &--signup {
       margin: 40px;
     }
 
-    &__login {
+    &--login {
       font-size: 2.6em;
       padding: 0.9em;
       margin: 0.7em;
+
+      color: #573b8a;
+      transform: scale(.6);
     }
   }
-
-  &_signup-button {
-    &:disabled {
-      background: #949494;
-    }
-  }
-
 }
+
 #chk {
   display: none;
-}
-form {
-  text-align: center;
-}
-
-button {
-  z-index: 0;
-  margin: auto;
-  justify-content: center;
-  display: block;
-  border-radius: 5px;
-  transition: .2s ease-in;
 }
 
 #chk:checked ~ .auth_login {
@@ -94,3 +73,5 @@ button {
 #chk:checked ~ .auth_signup label {
   transform: scale(.6);
 }
+
+

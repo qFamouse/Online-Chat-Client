@@ -1,0 +1,19 @@
+<div class="auth">
+  <div class="auth_menu">
+    <input type="checkbox" id="chk" aria-hidden="true">
+
+    <div class="auth_signup">
+      <label class="auth_label auth_label--signup" for="chk" aria-hidden="true">Sign up</label>
+      <app-signup-form
+        (onSubmit)="onSignupSubmit($event)"
+      ></app-signup-form>
+    </div>
+
+    <div class="auth_login">
+      <label class="auth_label auth_label--login" for="chk" aria-hidden="true">Login</label>
+      <app-login-form
+        (onSubmit)="onLoginSubmit($event)"
+      ></app-login-form>
+    </div>
+  </div>
+</div>

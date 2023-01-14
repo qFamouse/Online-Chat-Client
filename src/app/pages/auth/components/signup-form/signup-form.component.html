@@ -1,0 +1,37 @@
+<form
+  class="auth-form"
+  [formGroup]="formGroup"
+  (ngSubmit)="formGroup.valid && onSubmit.emit(formGroup.value)">
+
+  <mat-form-field>
+    <mat-label>User name</mat-label>
+    <input type="text" name="name" formControlName="name" placeholder="Your name?" matInput>
+    <mat-error *ngIf="formGroup.get('name')?.hasError('required')">
+      Name is required
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Email</mat-label>
+    <input type="email" name="email" formControlName="email" placeholder="Your email?" matInput>
+    <mat-error *ngIf="formGroup.get('email')?.hasError('required')">
+      Email is required
+    </mat-error>
+    <mat-error *ngIf="formGroup.get('email')?.hasError('email')">
+      Wrong email
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Password</mat-label>
+    <input type="password" name="password" formControlName="password" placeholder="Your password?" matInput>
+    <mat-error *ngIf="formGroup.get('password')?.hasError('required')">
+      Password is required
+    </mat-error>
+    <mat-error *ngIf="formGroup.get('password')?.hasError('pattern')">
+      Easy password
+    </mat-error>
+  </mat-form-field>
+
+  <button class="auth-form__submit" [disabled]="formGroup.invalid" mat-flat-button color="primary">Sign up</button>
+</form>
