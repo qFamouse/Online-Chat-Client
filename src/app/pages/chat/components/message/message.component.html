@@ -1,0 +1,9 @@
+<div class="message">
+  <div class="message__avatar">
+    <img src="assets/no-avatar.png" alt="avatar">
+  </div>
+  <div [ngClass]="isSender ? 'message__body--sender' : 'message__body--recipient'" class="message__body">
+    <p class="message__text">{{text}}</p>
+    <span class="message__time">{{time}}</span>
+  </div>
+</div>
