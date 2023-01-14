@@ -1,0 +1,19 @@
+<h1 mat-dialog-title>
+  <mat-icon>thumb_down</mat-icon>
+  {{data.title}}
+</h1>
+<div mat-dialog-content>
+  <p>Type: {{data.type}}</p>
+  <p>Detail: {{data.detail}}</p>
+  <p>Status: {{data.status}}</p>
+  <p>TraceId: {{data.traceId}}</p>
+
+  <div *ngFor="let category of data.errors | keyvalue">
+    <div *ngFor="let error of category.value">
+      <p><b>{{category.key}}</b>: {{error}}</p>
+    </div>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Close</button>
+</div>
