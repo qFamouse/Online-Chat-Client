@@ -2,7 +2,6 @@ import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 
 import { AppComponent } from "./app.component";
-import { AuthComponent } from "./pages/auth/auth.component";
 import { AppRoutingModule } from "./app-routing.module";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatFormFieldModule } from "@angular/material/form-field";
@@ -10,9 +9,10 @@ import { MatInputModule } from "@angular/material/input";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MatButtonModule } from "@angular/material/button";
 import { ChatModule } from "./pages/chat/chat.module";
+import { AuthModule } from "./pages/auth/auth.module";
 
 @NgModule({
-	declarations: [AppComponent, AuthComponent],
+	declarations: [AppComponent],
 	imports: [
 		BrowserModule,
 		AppRoutingModule,
@@ -22,6 +22,7 @@ import { ChatModule } from "./pages/chat/chat.module";
 		MatInputModule,
 		ReactiveFormsModule,
 		MatButtonModule,
+		AuthModule,
 		ChatModule
 	],
 	providers: [],
