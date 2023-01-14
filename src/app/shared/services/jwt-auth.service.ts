@@ -31,11 +31,11 @@ export class JwtAuthService {
 
 	logout() {
 		localStorage.removeItem(JWT_KEYS.token);
-		localStorage.removeItem(JWT_KEYS.expires);
+		localStorage.removeItem(JWT_KEYS.expiration);
 	}
 
 	private setSession(jwt: JwtSession) {
 		localStorage.setItem(JWT_KEYS.token, jwt.token);
-		localStorage.setItem(JWT_KEYS.expires, jwt.expires);
+		localStorage.setItem(JWT_KEYS.expiration, jwt.expires);
 	}
 }
