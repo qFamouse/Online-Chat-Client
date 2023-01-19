@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { ApiService } from "./api.service";
-import { Observable, shareReplay, tap } from "rxjs";
+import { catchError, map, Observable, of, shareReplay, tap } from "rxjs";
 import { JwtSession } from "../models/dto/jwt-session.dto";
 import { JWT_KEYS } from "../constants/storage";
 import { apiUserRoutes } from "../constants/api-routes";
@@ -12,9 +12,18 @@ import { User } from "../models/entities/user.entity";
 export class JwtAuthService {
 	constructor(private apiService: ApiService) {}
 
-	isAuthenticated(): boolean {
+	isAuthenticated(): Observable<boolean> {
 		let token = localStorage.getItem(JWT_KEYS.token);
-		return token != null && token.length > 0;
+
+		if (token != null) {
+			const url = apiUserRoutes.authenticate;
+			return this.apiService.get(url).pipe(
+				map(res => true),
+				catchError(err => of(false))
+			);
+		}
+
+		return of(false);
 	}
 	login(email: string, password: string): Observable<JwtSession> {
 		const url = apiUserRoutes.login;
