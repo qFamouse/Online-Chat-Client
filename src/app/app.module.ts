@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MatButtonModule } from "@angular/material/button";
 import { ChatModule } from "./pages/chat/chat.module";
 import { AuthModule } from "./pages/auth/auth.module";
+import { interceptorsProvider } from "./shared/providers/interceptors.provider";
 
 @NgModule({
 	declarations: [AppComponent],
@@ -25,7 +26,7 @@ import { AuthModule } from "./pages/auth/auth.module";
 		AuthModule,
 		ChatModule
 	],
-	providers: [],
+	providers: [...interceptorsProvider],
 	bootstrap: [AppComponent]
 })
 export class AppModule {}
