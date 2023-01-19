@@ -2,15 +2,23 @@ import { RouterModule, Routes } from "@angular/router";
 import { NgModule } from "@angular/core";
 import { DirectComponent } from "./pages/chat/components/direct/direct.component";
 import { AuthPageComponent } from "./pages/auth/components/auth-page/auth-page.component";
+import { AuthorizeGuard } from "./shared/guards/authorize.guard";
+import { authPages, chatPages } from "./shared/constants/pages";
 
 const routes: Routes = [
 	{
 		path: "",
+		pathMatch: "prefix",
+		redirectTo: authPages.auth.absolutePath
+	},
+	{
+		path: authPages.auth.absolutePath,
 		component: AuthPageComponent
 	},
 	{
-		path: "direct",
-		component: DirectComponent
+		path: chatPages.direct.absolutePath,
+		component: DirectComponent,
+		canActivate: [AuthorizeGuard]
 	}
 ];
 
