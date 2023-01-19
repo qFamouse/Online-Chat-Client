@@ -35,7 +35,7 @@ export class JwtAuthService {
 
 	signup(userName: string, email: string, password: string): Observable<User> {
 		const url = apiUserRoutes.signup;
-		return this.apiService.post(url, { name: userName, email, password });
+		return this.apiService.post(url, { userName, email, password });
 	}
 
 	logout() {

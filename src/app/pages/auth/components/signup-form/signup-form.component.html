@@ -5,8 +5,8 @@
 
   <mat-form-field>
     <mat-label>User name</mat-label>
-    <input type="text" name="name" formControlName="name" placeholder="Your name?" matInput>
-    <mat-error *ngIf="formGroup.get('name')?.hasError('required')">
+    <input type="text" name="userName" formControlName="userName" placeholder="Your name?" matInput>
+    <mat-error *ngIf="formGroup.get('userName')?.hasError('required')">
       Name is required
     </mat-error>
   </mat-form-field>
