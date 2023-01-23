@@ -19,6 +19,11 @@ const routes: Routes = [
 		path: chatPages.direct.absolutePath,
 		component: DirectComponent,
 		canActivate: [AuthorizeGuard]
+	},
+	{
+		path: `${chatPages.direct.absolutePath}/:id`,
+		component: DirectComponent,
+		canActivate: [AuthorizeGuard]
 	}
 ];
 
