@@ -10,32 +10,11 @@
       [name]="'Author'"
     ></app-dialog>
   </div>
-  <div class="conversation col-xs-9">
-    <div class="recipient conversation__recipient">
-      <div class="recipient__author">Author name</div>
-    </div>
-    <div class="conversation__messages">
-      <app-message
-      [text]="'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut corporis distinctio eligendi fugit ipsam magnam vitae!'"
-      [time]="'3:14 PM'"
-      [isSender]="true"
-      ></app-message>
-
-      <app-message
-        [text]="'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam aspernatur assumenda commodi cum debitis, deleniti dolores dolorum earum eligendi eos iste itaque iusto laboriosam libero molestiae mollitia obcaecati odit officiis quam quas quasi quibusdam tempora ut velit voluptatum? Adipisci consequuntur dicta distinctio officiis reiciendis sequi velit voluptatum! Aut exercitationem inventore minima pariatur. Culpa delectus incidunt magni nemo odit placeat possimus, praesentium quibusdam repudiandae tenetur!'"
-        [time]="'3:15 PM'"
-      ></app-message>
-    </div>
-    <div class="place-to-post conversation__place-to-post">
-      <a class="place-to-post__attach">
-        <img src="assets/attach.svg" alt="pin">
-      </a>
-      <div class="place-to-post__message">
-        <textarea autosize [minRows]="1" [maxRows]="10" placeholder="Write a message..."></textarea>
-      </div>
-      <a class="place-to-post__send">
-        <img src="assets/send.svg" alt="send">
-      </a>
-    </div>
+  <div class="col-xs-9" style="padding: 0">
+    <app-conversation
+      [conversationTitle]="openedInterlocutorName"
+      [messages]="openedInterlocutorChat"
+      [senderId]="3"
+    ></app-conversation>
   </div>
 </div>
