@@ -1,4 +1,7 @@
-<div class="dialog" (click)="onClick.emit($event)">
+<div
+  class="dialog"
+  [ngClass]="{'dialog--selected': selected}"
+  (click)="onClick.emit($event)">
   <div class="dialog__avatar">
     <img src="assets/no-avatar.png" alt="avatar">
   </div>
