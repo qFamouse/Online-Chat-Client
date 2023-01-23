@@ -6,5 +6,11 @@ export const apiUserRoutes = {
 	login: `${apiUrl}/Users/login`,
 	signup: `${apiUrl}/Users/signup`,
 	authenticate: `${apiUrl}/Users/auth`,
-	about: `${apiUrl}/Users/about`
+	about: `${apiUrl}/Users/about`,
+	user: `${apiUrl}/Users`
+};
+
+export const apiDirectMessageRoutes = {
+	interlocutors: `${apiUrl}/DirectMessages/interlocutors`,
+	chat: `${apiUrl}/DirectMessages/chat`
 };
