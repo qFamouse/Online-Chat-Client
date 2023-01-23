@@ -4,10 +4,10 @@
       <input type="text" placeholder="Search">
     </div>
     <app-dialog
-      [name]="'My long name'"
-    ></app-dialog>
-    <app-dialog
-      [name]="'Author'"
+      *ngFor="let interlocutor of interlocutors"
+      [name]="interlocutor.userName"
+      [selected]="interlocutor.id == openedInterlocutorId"
+      (onClick)="openConversation(interlocutor.id)"
     ></app-dialog>
   </div>
   <div class="col-xs-9" style="padding: 0">
