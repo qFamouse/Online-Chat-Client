@@ -1,9 +1,9 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { DirectMessageService } from "../../../../shared/modules/api/services/direct-message.service";
 import { Interlocutor } from "../../../../shared/models/dto/interlocutor.dto";
 import { Message } from "../../../../shared/models/dto/message.dto";
 import { ActivatedRoute, Router } from "@angular/router";
-import { Subscription } from "rxjs";
+import { first, Subject, takeUntil } from "rxjs";
 import { chatPages } from "../../../../shared/constants/pages";
 import { UserService } from "../../../../shared/modules/api/services/user.service";
 import { User } from "../../../../shared/models/entities/user.entity";
@@ -13,12 +13,15 @@ import { User } from "../../../../shared/models/entities/user.entity";
 	templateUrl: "./direct.component.html",
 	styleUrls: ["./direct.component.scss"]
 })
-export class DirectComponent implements OnInit {
-	activateRouteSubscription!: Subscription;
+export class DirectComponent implements OnInit, OnDestroy {
+	unsubscribe$ = new Subject<void>();
+
 	openedInterlocutorId!: number;
 	openedInterlocutorName!: string;
 	openedInterlocutorChat!: Message[];
+
 	currentUser!: User;
+
 	interlocutors: Interlocutor[] = [];
 	messageCache = new Map<number, Message[]>();
 
@@ -30,8 +33,9 @@ export class DirectComponent implements OnInit {
 	) {}
 
 	ngOnInit(): void {
-		this.activateRouteSubscription = this.activateRoute.params.subscribe(
-			params => {
+		this.activateRoute.params
+			.pipe(takeUntil(this.unsubscribe$))
+			.subscribe(params => {
 				let paramsId = Number.parseInt(params["id"]);
 				let subscribe = this.userService
 					.getUserById(paramsId)
@@ -41,16 +45,21 @@ export class DirectComponent implements OnInit {
 						this.loadMessagesByInterlocutorId(user.id);
 						subscribe.unsubscribe();
 					});
-			}
-		);
+			});
 
-		this.directMessageService.getInterlocutors().subscribe(interlocutors => {
-			this.interlocutors = interlocutors;
-		});
+		this.directMessageService
+			.getInterlocutors()
+			.pipe(takeUntil(this.unsubscribe$))
+			.subscribe(interlocutors => {
+				this.interlocutors = interlocutors;
+			});
 
-		this.userService.currentUser().subscribe(user => {
-			this.currentUser = user;
-		});
+		this.userService
+			.currentUser()
+			.pipe(first())
+			.subscribe(user => {
+				this.currentUser = user;
+			});
 	}
 
 	async openConversation(id: number) {
@@ -65,11 +74,17 @@ export class DirectComponent implements OnInit {
 		} else {
 			let subscribe = this.directMessageService
 				.getChat(id)
+				.pipe(first())
 				.subscribe(messages => {
 					this.openedInterlocutorChat = messages;
 					this.messageCache.set(id, messages);
 					subscribe.unsubscribe();
 				});
 		}
+	}
+
+	ngOnDestroy(): void {
+		this.unsubscribe$.next();
+		this.unsubscribe$.complete();
 	}
 }
