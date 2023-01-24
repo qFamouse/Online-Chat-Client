@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { Subscription } from "rxjs";
 import { chatPages } from "../../../../shared/constants/pages";
 import { UserService } from "../../../../shared/modules/api/services/user.service";
+import { User } from "../../../../shared/models/entities/user.entity";
 
 @Component({
 	selector: "app-direct",
@@ -17,6 +18,7 @@ export class DirectComponent implements OnInit {
 	openedInterlocutorId!: number;
 	openedInterlocutorName!: string;
 	openedInterlocutorChat!: Message[];
+	currentUser!: User;
 	interlocutors: Interlocutor[] = [];
 	messageCache = new Map<number, Message[]>();
 
@@ -44,6 +46,10 @@ export class DirectComponent implements OnInit {
 
 		this.directMessageService.getInterlocutors().subscribe(interlocutors => {
 			this.interlocutors = interlocutors;
+		});
+
+		this.userService.currentUser().subscribe(user => {
+			this.currentUser = user;
 		});
 	}
 
