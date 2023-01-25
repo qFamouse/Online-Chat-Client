@@ -12,6 +12,10 @@ import { User } from "../models/entities/user.entity";
 export class JwtAuthService {
 	constructor(private apiService: ApiService) {}
 
+	get token(): string {
+		return localStorage.getItem(JWT_KEYS.token) ?? "";
+	}
+
 	isAuthenticated(): Observable<boolean> {
 		let token = localStorage.getItem(JWT_KEYS.token);
 
