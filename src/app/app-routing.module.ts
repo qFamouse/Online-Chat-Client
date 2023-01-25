@@ -4,6 +4,7 @@ import { DirectComponent } from "./pages/chat/components/direct/direct.component
 import { AuthPageComponent } from "./pages/auth/components/auth-page/auth-page.component";
 import { AuthorizeGuard } from "./shared/guards/authorize.guard";
 import { authPages, chatPages } from "./shared/constants/pages";
+import { CurrentUserResolver } from "./shared/resolvers/current-user.resolver";
 
 const routes: Routes = [
 	{
@@ -23,7 +24,8 @@ const routes: Routes = [
 	{
 		path: `${chatPages.direct.absolutePath}/:id`,
 		component: DirectComponent,
-		canActivate: [AuthorizeGuard]
+		canActivate: [AuthorizeGuard],
+		resolve: { currentUser: CurrentUserResolver }
 	}
 ];
 
