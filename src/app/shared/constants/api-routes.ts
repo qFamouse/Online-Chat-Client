@@ -1,6 +1,7 @@
 import { environment } from "src/environments/environment";
 
 const apiUrl = environment.apiUrl;
+const serverUrl = environment.serverUrl;
 
 export const apiUserRoutes = {
 	login: `${apiUrl}/Users/login`,
@@ -13,4 +14,8 @@ export const apiUserRoutes = {
 export const apiDirectMessageRoutes = {
 	interlocutors: `${apiUrl}/DirectMessages/interlocutors`,
 	chat: `${apiUrl}/DirectMessages/chat`
+};
+
+export const apiSignalrRoutes = {
+	direct: `${serverUrl}/direct`
 };
