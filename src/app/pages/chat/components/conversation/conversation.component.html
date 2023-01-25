@@ -10,14 +10,14 @@
       [time]="message.time"
     ></app-message>
   </div>
-  <form class="place-to-post conversation__place-to-post">
+  <form class="place-to-post conversation__place-to-post" [formGroup]="formGroup">
     <a class="place-to-post__attach">
       <img src="assets/attach.svg" alt="pin">
     </a>
     <div class="place-to-post__message">
-      <textarea autosize [minRows]="1" [maxRows]="10" required placeholder="Write a message..."></textarea>
+      <textarea autosize [minRows]="1" [maxRows]="10" required formControlName="message" placeholder="Write a message..." [(ngModel)]="textAreaMessage"></textarea>
     </div>
-    <a type="submit" class="place-to-post__send">
+    <a (click)="formGroup.valid && onSendHandler()" type="submit" class="place-to-post__send">
       <img src="assets/send.svg" alt="send">
     </a>
   </form>

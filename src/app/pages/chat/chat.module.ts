@@ -6,9 +6,10 @@ import { AutosizeModule } from "ngx-autosize";
 import { MessageComponent } from "./components/message/message.component";
 import { DialogComponent } from "./components/dialog/dialog.component";
 import { ConversationComponent } from "./components/conversation/conversation.component";
+import { ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
-	imports: [CommonModule, RouterOutlet, AutosizeModule],
+	imports: [CommonModule, RouterOutlet, AutosizeModule, ReactiveFormsModule],
 	declarations: [
 		DirectComponent,
 		MessageComponent,
