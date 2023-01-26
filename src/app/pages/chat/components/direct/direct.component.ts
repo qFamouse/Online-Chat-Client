@@ -112,14 +112,15 @@ export class DirectComponent implements OnInit, OnDestroy {
 		if (messages) {
 			this.openedInterlocutorChat = messages;
 		} else {
-			let subscribe = this.directMessageService
-				.getChat(id)
-				.pipe(first())
-				.subscribe(messages => {
-					this.openedInterlocutorChat = messages;
-					this.messageCache.set(id, messages);
-					subscribe.unsubscribe();
-				});
+			this.subscription.add(
+				this.directMessageService
+					.getChat(id)
+					.pipe(first())
+					.subscribe(messages => {
+						this.openedInterlocutorChat = messages;
+						this.messageCache.set(id, messages);
+					})
+			);
 		}
 	}
 
