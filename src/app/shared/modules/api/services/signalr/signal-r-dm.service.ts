@@ -4,6 +4,7 @@ import { Subject } from "rxjs";
 import { Message } from "../../../../models/dto/message.dto";
 import { JwtAuthService } from "../../../../services/jwt-auth.service";
 import { apiSignalrRoutes } from "../../../../constants/api-routes";
+import { SendMessage } from "../../../../models/dto/send-message.dto";
 @Injectable({
 	providedIn: "root"
 })
@@ -13,13 +14,8 @@ export class SignalRDMServiceService {
 
 	constructor(private jwtAuthService: JwtAuthService) {}
 
-	sendMessage(receiverId: number, message: string) {
-		console.log("here", receiverId, message, this.connection);
-		return this.connection.invoke(
-			"SendMessage",
-			receiverId.toString(),
-			message
-		);
+	sendMessage(sendMessage: SendMessage): Promise<Message> {
+		return this.connection.invoke("SendMessage", sendMessage);
 	}
 
 	async openConnection() {

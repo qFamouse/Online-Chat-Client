@@ -93,15 +93,15 @@ export class DirectComponent implements OnInit, OnDestroy {
 		await this.router.navigateByUrl(url);
 	}
 
-	async onSendMessage(message: Message) {
-		await this.signalRService.sendMessage(
-			this.openedInterlocutorId,
-			message.message
-		);
+	async onSend(message: string) {
+		let savedMessage = await this.signalRService.sendMessage({
+			receiverId: this.openedInterlocutorId,
+			message: message
+		});
 
-		let messagesWithReceiver = this.messageCache.get(this.openedInterlocutorId);
-		if (messagesWithReceiver) {
-			messagesWithReceiver.push(message);
+		let cacheChat = this.messageCache.get(savedMessage.receiverId);
+		if (cacheChat) {
+			cacheChat.push(savedMessage);
 		} else {
 			this.updateInterlocutors();
 		}
