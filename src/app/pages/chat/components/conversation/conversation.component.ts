@@ -1,4 +1,14 @@
-import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import {
+	Component,
+	ElementRef,
+	EventEmitter,
+	Input,
+	OnInit,
+	Output,
+	QueryList,
+	ViewChild,
+	ViewChildren
+} from "@angular/core";
 import { Message } from "../../../../shared/models/dto/message.dto";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
@@ -11,8 +21,17 @@ export class ConversationComponent implements OnInit {
 	@Input() messages: Message[] = [];
 	@Input() conversationTitle: string = "";
 	@Input() senderId: number = 0;
+
+	@ViewChild("chat") chat!: ElementRef;
+	@ViewChildren("messages") things!: QueryList<any>;
+	ngAfterViewInit() {
+		this.things.changes.subscribe(t => {
+			this.chat.nativeElement.scrollTop = this.chat.nativeElement.scrollHeight;
+		});
+	}
+
 	@Output() onAttach = new EventEmitter<void>();
-	@Output() onSend = new EventEmitter<Message>();
+	@Output() onSend = new EventEmitter<string>();
 
 	textAreaMessage!: string;
 
@@ -25,14 +44,12 @@ export class ConversationComponent implements OnInit {
 		});
 	}
 
-	onSendHandler() {
-		let message: Message = {
-			id: 0,
-			senderId: this.senderId,
-			message: this.textAreaMessage,
-			time: "11"
-		};
+	test() {
+		console.log("change");
+	}
 
-		this.onSend.emit(message);
+	onSendHandler() {
+		this.onSend.emit(this.textAreaMessage);
+		this.textAreaMessage = "";
 	}
 }
