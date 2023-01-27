@@ -6,8 +6,8 @@ import { Component, Input } from "@angular/core";
 	styleUrls: ["./message.component.scss"]
 })
 export class MessageComponent {
-	@Input() text!: string;
-	@Input() time!: string;
+	@Input() text: string | undefined;
+	@Input() time: string | undefined | null;
 	@Input() isSender: boolean = false;
 
 	constructor() {}
