@@ -19,7 +19,8 @@ const routes: Routes = [
 	{
 		path: chatPages.direct.absolutePath,
 		component: DirectComponent,
-		canActivate: [AuthorizeGuard]
+		canActivate: [AuthorizeGuard],
+		resolve: { currentUser: CurrentUserResolver }
 	},
 	{
 		path: `${chatPages.direct.absolutePath}/:id`,

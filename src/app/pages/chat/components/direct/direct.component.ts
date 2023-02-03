@@ -22,7 +22,7 @@ export class DirectComponent implements OnInit, OnDestroy {
 	openedInterlocutorName!: string;
 	openedInterlocutorChat!: Message[];
 
-	currentUser: User;
+	currentUser!: User;
 
 	interlocutors: Interlocutor[];
 	messageCache = new Map<number, Message[]>();
@@ -36,7 +36,14 @@ export class DirectComponent implements OnInit, OnDestroy {
 	) {
 		this.subscription = new Subscription();
 		this.interlocutors = new Array<Interlocutor>();
-		this.currentUser = {} as User;
+
+		// Information about current user
+		this.activateRoute.data.subscribe((response: any) => {
+			this.currentUser = response.currentUser;
+		});
+
+		// Get current user's interlocutors'
+		this.updateInterlocutors();
 
 		// SignalR
 		this.signalRService.openConnection();
@@ -72,12 +79,7 @@ export class DirectComponent implements OnInit, OnDestroy {
 			});
 	}
 
-	ngOnInit(): void {
-		this.updateInterlocutors();
-		this.activateRoute.data.subscribe((response: any) => {
-			this.currentUser = response.currentUser;
-		});
-	}
+	ngOnInit(): void {}
 
 	updateInterlocutors() {
 		this.directMessageService

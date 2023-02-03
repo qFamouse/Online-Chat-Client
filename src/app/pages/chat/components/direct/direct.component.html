@@ -12,6 +12,7 @@
   </div>
   <div class="col-xs-9" style="padding: 0">
     <app-conversation
+      *ngIf="openedInterlocutorId"
       [conversationTitle]="openedInterlocutorName"
       [messages]="openedInterlocutorChat"
       [senderId]="currentUser.id"

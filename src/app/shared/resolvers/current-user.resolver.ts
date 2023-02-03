@@ -4,19 +4,20 @@ import {
 	RouterStateSnapshot,
 	ActivatedRouteSnapshot
 } from "@angular/router";
-import { catchError, Observable, of } from "rxjs";
+import { Observable } from "rxjs";
 import { UserService } from "../modules/api/services/user.service";
+import { User } from "../models/entities/user.entity";
 
 @Injectable({
 	providedIn: "root"
 })
-export class CurrentUserResolver implements Resolve<boolean> {
+export class CurrentUserResolver implements Resolve<User> {
 	constructor(private userService: UserService) {}
 
 	resolve(
 		route: ActivatedRouteSnapshot,
 		state: RouterStateSnapshot
-	): Observable<boolean> {
-		return this.userService.currentUser().pipe(catchError(err => of(err)));
+	): Observable<User> {
+		return this.userService.currentUser();
 	}
 }
