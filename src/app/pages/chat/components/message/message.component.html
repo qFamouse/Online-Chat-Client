@@ -4,6 +4,18 @@
   </div>
   <div [ngClass]="isSender ? 'message__body--sender' : 'message__body--recipient'" class="message__body">
     <p class="message__text">{{text}}</p>
+    <div class="message__attachments-container">
+      <div class="attachment">
+        <img class="attachment__image" src="assets/attachment.svg" alt="attachment">
+        <div class="attachment__filename">Some file name</div>
+        <div class="attachment__filesize">1.3 KB</div>
+      </div>
+      <div class="attachment">
+        <img class="attachment__image" src="assets/attachment.svg" alt="attachment">
+        <div class="attachment__filename">Some file name</div>
+        <div class="attachment__filesize">1.3 KB</div>
+      </div>
+    </div>
     <span class="message__time">{{time}}</span>
   </div>
 </div>
