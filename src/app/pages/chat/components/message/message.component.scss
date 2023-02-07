@@ -59,10 +59,16 @@
     color: #6d7f8f;
   }
 
-  &__attachments-container {}
+  &__attachments-container {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
 }
 
 .file-attachment {
+  cursor: pointer;
   display: grid;
   grid-template-columns: max-content 1fr 1fr;
   grid-template-rows: 30px 30px;
@@ -107,6 +113,7 @@
 }
 
 .image-attachment {
+  cursor: pointer;
   &__content {
     width: 300px;
     max-height: 300px;
