@@ -19,3 +19,7 @@ export const apiDirectMessageRoutes = {
 export const apiSignalrRoutes = {
 	direct: `${serverUrl}/direct`
 };
+
+export const apiAttachmentRoutes = {
+	getById: `${apiUrl}/attachments`
+};

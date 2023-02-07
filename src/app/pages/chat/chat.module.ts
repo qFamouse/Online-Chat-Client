@@ -7,9 +7,16 @@ import { MessageComponent } from "./components/message/message.component";
 import { DialogComponent } from "./components/dialog/dialog.component";
 import { ConversationComponent } from "./components/conversation/conversation.component";
 import { ReactiveFormsModule } from "@angular/forms";
+import { SharedModule } from "../../shared/shared.module";
 
 @NgModule({
-	imports: [CommonModule, RouterOutlet, AutosizeModule, ReactiveFormsModule],
+	imports: [
+		CommonModule,
+		RouterOutlet,
+		AutosizeModule,
+		ReactiveFormsModule,
+		SharedModule
+	],
 	declarations: [
 		DirectComponent,
 		MessageComponent,

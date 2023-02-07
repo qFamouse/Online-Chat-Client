@@ -8,6 +8,7 @@
       *ngFor="let message of messages"
       [isSender]="senderId === message.senderId"
       [text]="message.message"
+      [attachments]="message.attachments"
       [time]="message.time | date: 'hh:mm a'"
     ></app-message>
   </div>
