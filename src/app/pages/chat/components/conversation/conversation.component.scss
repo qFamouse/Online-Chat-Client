@@ -51,6 +51,10 @@
   justify-content: center;
   align-items: end;
 
+  &_hidden {
+    display: none;
+  }
+
   &__attach, &__send {
     display: flex;
     justify-content: center;
@@ -59,15 +63,21 @@
     width: 50px;
     height: 50px;
 
+    &_files-selected {
+      border-radius: 50% 10%;
+      border: 2px solid #232e3c;
+      background-color: #232e3c;
+    }
+
     img {
       width: 80%;
       height: 80%;
 
-      opacity: 0.8;
-
       &:hover {
         cursor: pointer;
-        opacity: 1;
+        border-radius: 100%;
+        border: 2px solid #232e3c;
+        background-color: #232e3c;
       }
     }
   }
