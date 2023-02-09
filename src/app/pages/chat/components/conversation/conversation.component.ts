@@ -11,7 +11,7 @@ import {
 } from "@angular/core";
 import { Message } from "../../../../shared/models/dto/message.dto";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { EmitSendMessage } from "../../../../shared/models/dto/emitSendMessage.dto";
+import { SendMessageEvent } from "../../models/send-message.event";
 
 @Component({
 	selector: "app-conversation",
@@ -23,6 +23,7 @@ export class ConversationComponent implements OnInit {
 	@Input() conversationTitle: string = "";
 	@Input() senderId: number = 0;
 
+	@ViewChild("attachments") attachments!: ElementRef;
 	@ViewChild("chat") chat!: ElementRef;
 	@ViewChildren("messages") things!: QueryList<any>;
 	ngAfterViewInit() {
@@ -31,10 +32,10 @@ export class ConversationComponent implements OnInit {
 		});
 	}
 
-	@Output() onSend = new EventEmitter<EmitSendMessage>();
+	@Output() onSend = new EventEmitter<SendMessageEvent>();
 
 	textAreaMessage: string = "";
-	attachments: File[] = [];
+	attachmentsSelected: boolean = false;
 
 	formGroup!: FormGroup;
 	constructor(private fb: FormBuilder) {}
@@ -45,19 +46,22 @@ export class ConversationComponent implements OnInit {
 		});
 	}
 
-	onAttachHandler(event: any): void {
+	onAttachHandler(event: any) {
 		const files = event.target.files;
 
-		this.attachments = files.length > 0 ? Array.from(files) : [];
+		this.attachmentsSelected = files?.length > 0;
 	}
 
 	onSendHandler() {
+		const files = this.attachments.nativeElement.files;
+
 		this.onSend.emit({
 			text: this.textAreaMessage,
-			attachments: this.attachments ? Array.from(this.attachments) : []
+			attachments: files ? Array.from(files) : []
 		});
 
 		this.textAreaMessage = "";
-		this.attachments = [];
+		this.attachments.nativeElement.value = "";
+		this.attachmentsSelected = false;
 	}
 }
