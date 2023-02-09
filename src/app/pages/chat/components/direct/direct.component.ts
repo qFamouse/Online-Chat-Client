@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { DirectMessageService } from "../../../../shared/modules/api/services/direct-message.service";
 import { Interlocutor } from "../../../../shared/models/dto/interlocutor.dto";
-import { Message } from "../../../../shared/models/dto/message.dto";
+import { MessageDto } from "../../../../shared/models/dto/message.dto";
 import { ActivatedRoute, Router } from "@angular/router";
 import { first, lastValueFrom, Subject, Subscription, takeUntil } from "rxjs";
 import { chatPages } from "../../../../shared/constants/pages";
@@ -22,12 +22,12 @@ export class DirectComponent implements OnInit, OnDestroy {
 
 	openedInterlocutorId!: number;
 	openedInterlocutorName!: string;
-	openedInterlocutorChat!: Message[];
+	openedInterlocutorChat!: MessageDto[];
 
 	currentUser!: User;
 
 	interlocutors: Interlocutor[];
-	messageCache = new Map<number, Message[]>();
+	messageCache = new Map<number, MessageDto[]>();
 
 	constructor(
 		private directMessageService: DirectMessageService,
@@ -52,7 +52,7 @@ export class DirectComponent implements OnInit, OnDestroy {
 		this.signalRService.openConnection();
 
 		this.subscription.add(
-			this.signalRService.messenger$.subscribe((message: Message) => {
+			this.signalRService.messenger$.subscribe((message: MessageDto) => {
 				let messagesFromSender = this.messageCache.get(message.senderId);
 				if (messagesFromSender) {
 					messagesFromSender.push(message);

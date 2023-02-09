@@ -9,7 +9,7 @@ import {
 	ViewChild,
 	ViewChildren
 } from "@angular/core";
-import { Message } from "../../../../shared/models/dto/message.dto";
+import { MessageDto } from "../../../../shared/models/dto/message.dto";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { SendMessageEvent } from "../../models/send-message.event";
 
@@ -19,7 +19,7 @@ import { SendMessageEvent } from "../../models/send-message.event";
 	styleUrls: ["./conversation.component.scss"]
 })
 export class ConversationComponent implements OnInit {
-	@Input() messages: Message[] = [];
+	@Input() messages: MessageDto[] = [];
 	@Input() conversationTitle: string = "";
 	@Input() senderId: number = 0;
 

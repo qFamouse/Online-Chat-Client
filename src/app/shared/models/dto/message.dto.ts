@@ -1,6 +1,6 @@
 import { Attachment } from "./attachment.dto";
 
-export interface Message {
+export interface MessageDto {
 	id: number;
 	senderId: number;
 	receiverId: number;
