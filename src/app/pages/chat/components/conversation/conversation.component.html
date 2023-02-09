@@ -9,7 +9,7 @@
       [isSender]="senderId === message.senderId"
       [text]="message.message"
       [attachments]="message.attachments"
-      [time]="message.time | date: 'hh:mm a'"
+      [time]="message.createdAt | date: 'hh:mm a'"
     ></app-message>
   </div>
   <form class="place-to-post conversation__place-to-post" [formGroup]="formGroup">

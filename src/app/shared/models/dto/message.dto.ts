@@ -5,6 +5,6 @@ export interface MessageDto {
 	senderId: number;
 	receiverId: number;
 	message: string;
-	time: string;
+	createdAt: string;
 	attachments: Attachment[];
 }
