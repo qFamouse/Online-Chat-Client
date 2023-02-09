@@ -1,4 +1,4 @@
-export interface EmitSendMessage {
+export interface SendMessageEvent {
 	text: string;
 	attachments: File[];
 }

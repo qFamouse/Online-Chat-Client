@@ -8,8 +8,8 @@ import { chatPages } from "../../../../shared/constants/pages";
 import { UserService } from "../../../../shared/modules/api/services/user.service";
 import { User } from "../../../../shared/models/entities/user.entity";
 import { SignalRDMServiceService } from "../../../../shared/modules/api/services/signalr/signal-r-dm.service";
-import { EmitSendMessage } from "../../../../shared/models/dto/emitSendMessage.dto";
 import { AttachmentService } from "../../../../shared/modules/api/services/attachment.service";
+import { SendMessageEvent } from "../../models/send-message.event";
 
 @Component({
 	selector: "app-direct",
@@ -98,7 +98,7 @@ export class DirectComponent implements OnInit, OnDestroy {
 		await this.router.navigateByUrl(url);
 	}
 
-	async onSend({ attachments, text }: EmitSendMessage) {
+	async onSend({ attachments, text }: SendMessageEvent) {
 		let savedMessage = await this.signalRService.sendMessage({
 			receiverId: this.openedInterlocutorId,
 			message: text
