@@ -3,11 +3,13 @@ import { DirectMessageService } from "../../../../shared/modules/api/services/di
 import { Interlocutor } from "../../../../shared/models/dto/interlocutor.dto";
 import { Message } from "../../../../shared/models/dto/message.dto";
 import { ActivatedRoute, Router } from "@angular/router";
-import { first, Subject, Subscription, takeUntil } from "rxjs";
+import { first, lastValueFrom, Subject, Subscription, takeUntil } from "rxjs";
 import { chatPages } from "../../../../shared/constants/pages";
 import { UserService } from "../../../../shared/modules/api/services/user.service";
 import { User } from "../../../../shared/models/entities/user.entity";
 import { SignalRDMServiceService } from "../../../../shared/modules/api/services/signalr/signal-r-dm.service";
+import { EmitSendMessage } from "../../../../shared/models/dto/emitSendMessage.dto";
+import { AttachmentService } from "../../../../shared/modules/api/services/attachment.service";
 
 @Component({
 	selector: "app-direct",
@@ -32,7 +34,8 @@ export class DirectComponent implements OnInit, OnDestroy {
 		private userService: UserService,
 		private activateRoute: ActivatedRoute,
 		private router: Router,
-		private signalRService: SignalRDMServiceService
+		private signalRService: SignalRDMServiceService,
+		private attachmentService: AttachmentService
 	) {
 		this.subscription = new Subscription();
 		this.interlocutors = new Array<Interlocutor>();
@@ -95,12 +98,21 @@ export class DirectComponent implements OnInit, OnDestroy {
 		await this.router.navigateByUrl(url);
 	}
 
-	async onSend(message: string) {
+	async onSend({ attachments, text }: EmitSendMessage) {
 		let savedMessage = await this.signalRService.sendMessage({
 			receiverId: this.openedInterlocutorId,
-			message: message
+			message: text
 		});
 
+		if (attachments.length > 0) {
+			let savedAttachments = await lastValueFrom(
+				this.attachmentService.uploadToDirectMessageByMessageId(
+					savedMessage.id,
+					Array.from(attachments)
+				)
+			);
+			savedMessage.attachments = savedAttachments ?? [];
+		}
 		let cacheChat = this.messageCache.get(savedMessage.receiverId);
 		if (cacheChat) {
 			cacheChat.push(savedMessage);
