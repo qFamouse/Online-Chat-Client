@@ -16,6 +16,10 @@ export class ApiService {
 		return this.http.get(`${path}`, { responseType: "blob" });
 	}
 
+	postBlob<T>(path: string, formData: FormData): Observable<T> {
+		return this.http.post<T>(path, formData);
+	}
+
 	post<T>(path: string, body: Object = {}): Observable<T> {
 		return this.http.post<T>(path, body);
 	}
