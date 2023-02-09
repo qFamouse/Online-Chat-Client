@@ -21,5 +21,6 @@ export const apiSignalrRoutes = {
 };
 
 export const apiAttachmentRoutes = {
-	getById: `${apiUrl}/attachments`
+	getById: `${apiUrl}/attachments`,
+	uploadToDirectMessageByMessageId: `${apiUrl}/attachments`
 };
