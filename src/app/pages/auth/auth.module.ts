@@ -8,6 +8,7 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
 import { DialogModule } from "../../shared/modules/dialog/dialog.module";
 import { HttpClientModule } from "@angular/common/http";
+import { MatIconModule } from "@angular/material/icon";
 
 @NgModule({
 	declarations: [AuthPageComponent, LoginFormComponent, SignupFormComponent],
@@ -17,7 +18,8 @@ import { HttpClientModule } from "@angular/common/http";
 		ReactiveFormsModule,
 		MatButtonModule,
 		DialogModule,
-		HttpClientModule
+		HttpClientModule,
+		MatIconModule
 	],
 	exports: [AuthPageComponent],
 	providers: []

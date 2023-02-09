@@ -11,6 +11,7 @@ export class LoginFormComponent implements OnInit {
 	@Output() onSubmit = new EventEmitter<LoginForm>();
 
 	formGroup!: FormGroup;
+	hide: boolean = true;
 	constructor(private fb: FormBuilder) {}
 
 	ngOnInit(): void {

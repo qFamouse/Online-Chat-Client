@@ -6,6 +6,7 @@
   <mat-form-field>
     <mat-label>Email</mat-label>
     <input type="email" name="email" formControlName="email" placeholder="Your email?" matInput>
+    <mat-icon matSuffix>email</mat-icon>
     <mat-error *ngIf="formGroup.get('email')?.hasError('required')">
       Email is required
     </mat-error>
@@ -16,7 +17,10 @@
 
   <mat-form-field>
     <mat-label>Password</mat-label>
-    <input type="password" name="password" formControlName="password" placeholder="Your password?" matInput>
+    <input [type]="hide ? 'password' : 'text'" name="password" formControlName="password" placeholder="Your password?" matInput>
+    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
   </mat-form-field>
 
   <button class="auth-form__submit" [disabled]="formGroup.invalid" mat-flat-button color="primary">Login</button>

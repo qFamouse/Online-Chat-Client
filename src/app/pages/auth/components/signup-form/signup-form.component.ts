@@ -16,6 +16,7 @@ export class SignupFormComponent implements OnInit {
 	@Output() onSubmit = new EventEmitter<SignupForm>();
 
 	formGroup!: FormGroup;
+	hide: boolean = true;
 
 	constructor(private fb: FormBuilder) {}
 

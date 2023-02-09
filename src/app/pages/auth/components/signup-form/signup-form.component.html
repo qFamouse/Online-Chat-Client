@@ -6,6 +6,7 @@
   <mat-form-field>
     <mat-label>User name</mat-label>
     <input type="text" name="userName" formControlName="userName" placeholder="Your name?" matInput>
+    <mat-icon matSuffix>account_circle</mat-icon>
     <mat-error *ngIf="formGroup.get('userName')?.hasError('required')">
       Name is required
     </mat-error>
@@ -14,6 +15,7 @@
   <mat-form-field>
     <mat-label>Email</mat-label>
     <input type="email" name="email" formControlName="email" placeholder="Your email?" matInput>
+    <mat-icon matSuffix>email</mat-icon>
     <mat-error *ngIf="formGroup.get('email')?.hasError('required')">
       Email is required
     </mat-error>
@@ -24,7 +26,10 @@
 
   <mat-form-field>
     <mat-label>Password</mat-label>
-    <input type="password" name="password" formControlName="password" placeholder="Your password?" matInput>
+    <input [type]="hide ? 'password' : 'text'" name="password" formControlName="password" placeholder="Your password?" matInput>
+    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
     <mat-error *ngIf="formGroup.get('password')?.hasError('required')">
       Password is required
     </mat-error>
