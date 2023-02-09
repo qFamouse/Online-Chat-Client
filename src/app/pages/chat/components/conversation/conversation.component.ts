@@ -11,6 +11,7 @@ import {
 } from "@angular/core";
 import { Message } from "../../../../shared/models/dto/message.dto";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { EmitSendMessage } from "../../../../shared/models/dto/emitSendMessage.dto";
 
 @Component({
 	selector: "app-conversation",
@@ -30,10 +31,10 @@ export class ConversationComponent implements OnInit {
 		});
 	}
 
-	@Output() onAttach = new EventEmitter<void>();
-	@Output() onSend = new EventEmitter<string>();
+	@Output() onSend = new EventEmitter<EmitSendMessage>();
 
-	textAreaMessage!: string;
+	textAreaMessage: string = "";
+	attachments: File[] = [];
 
 	formGroup!: FormGroup;
 	constructor(private fb: FormBuilder) {}
@@ -44,12 +45,19 @@ export class ConversationComponent implements OnInit {
 		});
 	}
 
-	test() {
-		console.log("change");
+	onAttachHandler(event: any): void {
+		const files = event.target.files;
+
+		this.attachments = files.length > 0 ? Array.from(files) : [];
 	}
 
 	onSendHandler() {
-		this.onSend.emit(this.textAreaMessage);
+		this.onSend.emit({
+			text: this.textAreaMessage,
+			attachments: this.attachments ? Array.from(this.attachments) : []
+		});
+
 		this.textAreaMessage = "";
+		this.attachments = [];
 	}
 }

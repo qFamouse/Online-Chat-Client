@@ -14,13 +14,13 @@
   </div>
   <form class="place-to-post conversation__place-to-post" [formGroup]="formGroup">
     <label class="place-to-post__attach">
-      <img class="place-to-post__attach_files-selected" src="assets/attach.svg" alt="pin">
-      <input class="place-to-post_hidden" type="file" multiple>
+      <img [ngClass]="{'place-to-post__attach_files-selected': attachments.length > 0}" src="assets/attach.svg" alt="pin">
+      <input class="place-to-post_hidden" type="file" multiple (change)="onAttachHandler($event)">
     </label>
     <div class="place-to-post__message">
       <textarea (keydown.enter)="formGroup.valid && onSendHandler(); false" autosize [minRows]="1" [maxRows]="10" required formControlName="message" placeholder="Write a message..." [(ngModel)]="textAreaMessage"></textarea>
     </div>
-    <a (click)="formGroup.valid && onSendHandler()" type="submit" class="place-to-post__send">
+    <a (click)="(formGroup.valid || attachments && attachments.length > 0) && onSendHandler()" type="submit" class="place-to-post__send">
       <img src="assets/send.svg" alt="send">
     </a>
   </form>
