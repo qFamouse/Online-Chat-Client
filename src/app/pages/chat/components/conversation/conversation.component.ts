@@ -52,12 +52,13 @@ export class ConversationComponent implements OnInit {
 		this.attachmentsSelected = files?.length > 0;
 	}
 
-	onSendHandler() {
+	onSendHandler(timeToLive: number | undefined = undefined) {
 		const files = this.attachments.nativeElement.files;
 
 		this.onSend.emit({
 			text: this.textAreaMessage,
-			attachments: files ? Array.from(files) : []
+			attachments: files ? Array.from(files) : [],
+			timeToLive: timeToLive
 		});
 
 		this.textAreaMessage = "";

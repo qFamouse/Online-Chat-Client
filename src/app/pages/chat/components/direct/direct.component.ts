@@ -98,17 +98,18 @@ export class DirectComponent implements OnInit, OnDestroy {
 		await this.router.navigateByUrl(url);
 	}
 
-	async onSend({ attachments, text }: SendMessageEvent) {
+	async onSend(sendMessageEvent: SendMessageEvent) {
 		let savedMessage = await this.signalRService.sendMessage({
 			receiverId: this.openedInterlocutorId,
-			message: text
+			message: sendMessageEvent.text,
+			timeToLive: sendMessageEvent.timeToLive
 		});
 
-		if (attachments.length > 0) {
+		if (sendMessageEvent.attachments.length > 0) {
 			let savedAttachments = await lastValueFrom(
 				this.attachmentService.uploadToDirectMessageByMessageId(
 					savedMessage.id,
-					Array.from(attachments)
+					Array.from(sendMessageEvent.attachments)
 				)
 			);
 			savedMessage.attachments = savedAttachments ?? [];

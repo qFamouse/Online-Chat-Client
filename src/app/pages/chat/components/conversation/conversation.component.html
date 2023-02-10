@@ -25,15 +25,15 @@
     </a>
     <ng-template #sendTypes>
       <div class="context-menu" cdkMenu>
-        <button class="context-menu__item" cdkMenuItem>Send</button>
+        <button class="context-menu__item" cdkMenuItem (click)="(formGroup.valid || attachmentsSelected) && onSendHandler()">Send</button>
         <button class="context-menu__item" cdkMenuItem [cdkMenuTriggerFor]="sendAndDelete">Send and delete</button>
       </div>
     </ng-template>
     <ng-template #sendAndDelete>
       <div class="context-menu context-menu_no-wide" cdkMenu>
-        <button class="context-menu__item" cdkMenuItem>10s</button>
-        <button class="context-menu__item" cdkMenuItem>30s</button>
-        <button class="context-menu__item" cdkMenuItem>60s</button>
+        <button class="context-menu__item" cdkMenuItem (click)="(formGroup.valid || attachmentsSelected) && onSendHandler(10)">10s</button>
+        <button class="context-menu__item" cdkMenuItem (click)="(formGroup.valid || attachmentsSelected) && onSendHandler(30)">30s</button>
+        <button class="context-menu__item" cdkMenuItem (click)="(formGroup.valid || attachmentsSelected) && onSendHandler(60)">60s</button>
       </div>
     </ng-template>
 
