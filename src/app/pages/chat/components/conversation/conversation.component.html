@@ -20,8 +20,22 @@
     <div class="place-to-post__message">
       <textarea (keydown.enter)="formGroup.valid && onSendHandler(); false" autosize [minRows]="1" [maxRows]="10" required formControlName="message" placeholder="Write a message..." [(ngModel)]="textAreaMessage"></textarea>
     </div>
-    <a (click)="(formGroup.valid || attachmentsSelected) && onSendHandler()" type="submit" class="place-to-post__send">
+    <a (click)="(formGroup.valid || attachmentsSelected) && onSendHandler()" type="submit" class="place-to-post__send" [cdkContextMenuTriggerFor]="sendTypes">
       <img src="assets/send.svg" alt="send">
     </a>
+    <ng-template #sendTypes>
+      <div class="context-menu" cdkMenu>
+        <button class="context-menu__item" cdkMenuItem>Send</button>
+        <button class="context-menu__item" cdkMenuItem [cdkMenuTriggerFor]="sendAndDelete">Send and delete</button>
+      </div>
+    </ng-template>
+    <ng-template #sendAndDelete>
+      <div class="context-menu context-menu_no-wide" cdkMenu>
+        <button class="context-menu__item" cdkMenuItem>10s</button>
+        <button class="context-menu__item" cdkMenuItem>30s</button>
+        <button class="context-menu__item" cdkMenuItem>60s</button>
+      </div>
+    </ng-template>
+
   </form>
 </div>

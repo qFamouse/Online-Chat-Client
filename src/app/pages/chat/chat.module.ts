@@ -8,6 +8,12 @@ import { DialogComponent } from "./components/dialog/dialog.component";
 import { ConversationComponent } from "./components/conversation/conversation.component";
 import { ReactiveFormsModule } from "@angular/forms";
 import { SharedModule } from "../../shared/shared.module";
+import {
+	CdkContextMenuTrigger,
+	CdkMenu,
+	CdkMenuItem,
+	CdkMenuTrigger
+} from "@angular/cdk/menu";
 
 @NgModule({
 	imports: [
@@ -15,7 +21,11 @@ import { SharedModule } from "../../shared/shared.module";
 		RouterOutlet,
 		AutosizeModule,
 		ReactiveFormsModule,
-		SharedModule
+		SharedModule,
+		CdkMenuTrigger,
+		CdkMenuItem,
+		CdkMenu,
+		CdkContextMenuTrigger
 	],
 	declarations: [
 		DirectComponent,

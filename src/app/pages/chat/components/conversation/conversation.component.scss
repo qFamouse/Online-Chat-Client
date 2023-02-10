@@ -107,3 +107,36 @@
   }
 }
 
+.context-menu {
+  border-radius: 1em;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #17212b;
+  padding: 5px 0;
+
+  &_no-wide {
+    max-width: 50px;
+  }
+
+  &__item {
+    background-color: transparent;
+    color: #5b8199;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    user-select: none;
+
+    width: 100%;
+
+    line-height: 36px;
+    padding: 0 16px;
+
+    &:hover {
+      color: #6ab2f2;
+      box-shadow: rgba(6, 24, 44, 0.4) 0 0 0 2px, rgba(6, 24, 44, 0.65) 0 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+    }
+  }
+}
