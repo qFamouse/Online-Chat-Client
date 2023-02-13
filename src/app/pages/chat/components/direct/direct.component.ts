@@ -10,6 +10,7 @@ import { User } from "../../../../shared/models/entities/user.entity";
 import { SignalRDMServiceService } from "../../../../shared/modules/api/services/signalr/signal-r-dm.service";
 import { AttachmentService } from "../../../../shared/modules/api/services/attachment.service";
 import { SendMessageEvent } from "../../models/send-message.event";
+import { DeleteMessageDto } from "../../../../shared/models/dto/delete-message.dto";
 
 @Component({
 	selector: "app-direct",
@@ -58,6 +59,26 @@ export class DirectComponent implements OnInit, OnDestroy {
 					messagesFromSender.push(message);
 				} else {
 					this.updateInterlocutors();
+				}
+			})
+		);
+
+		this.subscription.add(
+			this.signalRService.deleter$.subscribe((message: DeleteMessageDto) => {
+				let interlocutorId =
+					this.currentUser.id == message.senderId
+						? message.receiverId
+						: message.senderId;
+
+				let interlocutorMessages = this.messageCache.get(interlocutorId);
+
+				if (interlocutorMessages) {
+					let index = interlocutorMessages.findIndex(
+						x => x.id === message.messageId
+					);
+					if (index > 0) {
+						interlocutorMessages.splice(index, 1);
+					}
 				}
 			})
 		);

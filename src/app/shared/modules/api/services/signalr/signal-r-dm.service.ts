@@ -5,12 +5,14 @@ import { MessageDto } from "../../../../models/dto/message.dto";
 import { JwtAuthService } from "../../../../services/jwt-auth.service";
 import { apiSignalrRoutes } from "../../../../constants/api-routes";
 import { SendMessageDto } from "../../../../models/dto/send-message.dto";
+import { DeleteMessageDto } from "../../../../models/dto/delete-message.dto";
 @Injectable({
 	providedIn: "root"
 })
 export class SignalRDMServiceService {
 	connection!: SignalR.HubConnection;
 	messenger$ = new Subject<MessageDto>();
+	deleter$ = new Subject<DeleteMessageDto>();
 
 	constructor(private jwtAuthService: JwtAuthService) {}
 
@@ -30,12 +32,18 @@ export class SignalRDMServiceService {
 
 		await this.connection.start();
 		this.receiveMessageHandler();
+		this.deleteMessageHandler();
 	}
 
 	private receiveMessageHandler() {
 		this.connection.on("ReceiveMessage", (message: MessageDto) => {
-			console.log("receive", message);
 			this.messenger$.next(message);
+		});
+	}
+
+	private deleteMessageHandler() {
+		this.connection.on("DeleteMessage", (message: DeleteMessageDto) => {
+			this.deleter$.next(message);
 		});
 	}
 }
