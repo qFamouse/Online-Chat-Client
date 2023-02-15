@@ -1,0 +1,50 @@
+@mixin md-icon-size($size: 24px) {
+  font-size: $size;
+  height: $size;
+  width: $size;
+  line-height: $size;
+}
+
+mat-icon {
+  @include md-icon-size(25px);
+}
+
+.sidebar {
+  height: 100%;
+  background: #0e1621;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    height: 60px;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    color: #768c9e;
+    background: #0e1621;
+    cursor: pointer;
+
+    &_no-pointer {
+      cursor: auto;
+    }
+
+    &_active {
+      background: #25303e;
+      color: #5eb5f7;
+    }
+  }
+
+  &__item-title {
+    font-size: 0.9em;
+  }
+}

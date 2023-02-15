@@ -1,0 +1,33 @@
+<div class="sidebar">
+  <div class="sidebar__container">
+    <div class="sidebar__item sidebar__item_no-pointer">
+      <mat-icon>apps</mat-icon>
+    </div>
+    <a class="sidebar__item" matRipple
+         [matRippleColor]="matRippleColor"
+         [matRippleRadius]="matRippleRadius">
+      <mat-icon class="mat-icon_active">account_circle</mat-icon>
+      <div class="sidebar__item-title">Account</div>
+    </a>
+    <a class="sidebar__item sidebar__item_active" matRipple
+         [matRippleColor]="matRippleColor"
+         [matRippleRadius]="matRippleRadius">
+      <mat-icon class="mat-icon_active">chat</mat-icon>
+      <div class="sidebar__item-title">Chat</div>
+    </a>
+  </div>
+  <div class="sidebar__container">
+    <a class="sidebar__item" matRipple
+       [matRippleColor]="matRippleColor"
+       [matRippleRadius]="matRippleRadius">
+      <mat-icon class="mat-icon_active">trending_up</mat-icon>
+      <div class="sidebar__item-title">Statistics</div>
+    </a>
+    <a class="sidebar__item" matRipple
+       [matRippleColor]="matRippleColor"
+       [matRippleRadius]="matRippleRadius">
+      <mat-icon class="mat-icon_active">settings</mat-icon>
+      <div class="sidebar__item-title">Settings</div>
+    </a>
+  </div>
+</div>
