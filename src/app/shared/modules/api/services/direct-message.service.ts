@@ -22,4 +22,9 @@ export class DirectMessageService {
 		const params = new HttpParams().set("userId", userId);
 		return this.apiService.get(url, params);
 	}
+
+	getStatistics(): Observable<Blob> {
+		const url = apiDirectMessageRoutes.statistics;
+		return this.apiService.getBlob(url);
+	}
 }

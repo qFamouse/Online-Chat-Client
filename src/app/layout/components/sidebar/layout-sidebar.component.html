@@ -21,6 +21,7 @@
   <div class="sidebar__container">
     <a class="sidebar__item" matRipple
        [matRippleColor]="matRippleColor"
+       (click)="downloadStatistics()"
        [matRippleRadius]="matRippleRadius">
       <mat-icon class="mat-icon_active">trending_up</mat-icon>
       <div class="sidebar__item-title">Statistics</div>

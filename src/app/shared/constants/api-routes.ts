@@ -13,7 +13,8 @@ export const apiUserRoutes = {
 
 export const apiDirectMessageRoutes = {
 	interlocutors: `${apiUrl}/DirectMessages/interlocutors`,
-	chat: `${apiUrl}/DirectMessages/chat`
+	chat: `${apiUrl}/DirectMessages/chat`,
+	statistics: `${apiUrl}/DirectMessages/statistics`
 };
 
 export const apiSignalrRoutes = {
