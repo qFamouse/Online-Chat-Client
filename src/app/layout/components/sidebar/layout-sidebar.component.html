@@ -11,9 +11,9 @@
     </a>
     <a class="sidebar__item" matRipple
        [matRippleColor]="matRippleColor"
+       [matRippleRadius]="matRippleRadius"
        [routerLink]="directPage"
-       routerLinkActive="sidebar__item_active"
-       [matRippleRadius]="matRippleRadius">
+       routerLinkActive="sidebar__item_active">
       <mat-icon class="mat-icon_active">chat</mat-icon>
       <div class="sidebar__item-title">Chat</div>
     </a>
@@ -30,6 +30,14 @@
        [matRippleRadius]="matRippleRadius">
       <mat-icon class="mat-icon_active">settings</mat-icon>
       <div class="sidebar__item-title">Settings</div>
+    </a>
+    <a class="sidebar__item" matRipple
+       [matRippleColor]="matRippleColor"
+       [matRippleRadius]="matRippleRadius"
+       (click)="jwtAuthService.logout()"
+       [routerLink]="authPage">
+      <mat-icon class="mat-icon_active">exit_to_app</mat-icon>
+      <div class="sidebar__item-title">Logout</div>
     </a>
   </div>
 </div>

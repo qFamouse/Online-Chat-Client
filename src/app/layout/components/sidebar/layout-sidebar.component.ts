@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
-import { chatPages } from "../../../shared/constants/pages";
+import { authPages, chatPages } from "../../../shared/constants/pages";
+import { JwtAuthService } from "../../../shared/services/jwt-auth.service";
 
 @Component({
 	selector: "app-layout-sidebar",
@@ -10,4 +11,7 @@ export class LayoutSidebarComponent {
 	matRippleColor: string = "rgba(30, 39, 51, 0.35)";
 	matRippleRadius: number = 60;
 	directPage = chatPages.direct.absolutePath;
+	authPage = authPages.auth.absolutePath;
+
+	constructor(public jwtAuthService: JwtAuthService) {}
 }
