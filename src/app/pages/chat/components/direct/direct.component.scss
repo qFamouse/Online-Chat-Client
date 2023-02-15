@@ -34,13 +34,15 @@
 
   // Search input
   &__search {
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
 
     & input {
       width: 80%;
       background: #242f3d;
       padding: 0.5em;
-      margin: 1em 0;
       border-radius: 0.3em;
       border: none;
       outline: none;
