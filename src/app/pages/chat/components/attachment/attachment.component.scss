@@ -1,0 +1,52 @@
+.file-attachment {
+  cursor: pointer;
+  display: grid;
+  grid-template-columns: max-content 1fr 1fr;
+  grid-template-rows: 30px 30px;
+  grid-column-gap: 0.5em;
+  grid-template-areas:
+    "image filename filename"
+    "image filesize filesize";
+  max-height: 60px;
+
+  &__icon {
+    grid-area: image;
+    align-self: center;
+
+    height: 35px;
+    width: 35px;
+    padding: 0.5em;
+
+    border-radius: 100%;
+    background: #4c9ce2;
+  }
+
+  &__filename {
+    grid-area: filename;
+    align-self: end;
+    color: #f5f5f5;
+
+    // hide looong messa...
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__filesize {
+    grid-area: filesize;
+    color: #6d7f8f;
+
+    // hide looong messa...
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.image-attachment {
+  cursor: pointer;
+  &__content {
+    width: 300px;
+    max-height: 300px;
+  }
+}

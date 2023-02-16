@@ -1,0 +1,12 @@
+<div [ngSwitch]="true">
+  <div *ngSwitchCase="attachment.contentType.startsWith('image')">
+    <div class="image-attachment">
+      <img class="image-attachment__content" [src]="getSrc() | secure | async" alt="attachment">
+    </div>
+  </div>
+  <div *ngSwitchDefault class="file-attachment">
+    <img class="file-attachment__icon" draggable="false" src="assets/attachment.svg" alt="attachment">
+    <div class="file-attachment__filename">{{attachment.originalName}}</div>
+    <div class="file-attachment__filesize">{{attachment.contentLength | fileSize}}</div>
+  </div>
+</div>

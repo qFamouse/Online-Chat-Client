@@ -14,6 +14,7 @@ import {
 	CdkMenuItem,
 	CdkMenuTrigger
 } from "@angular/cdk/menu";
+import { AttachmentComponent } from './components/attachment/attachment.component';
 
 @NgModule({
 	imports: [
@@ -31,7 +32,8 @@ import {
 		DirectComponent,
 		MessageComponent,
 		DialogComponent,
-		ConversationComponent
+		ConversationComponent,
+  AttachmentComponent
 	]
 })
 export class ChatModule {}

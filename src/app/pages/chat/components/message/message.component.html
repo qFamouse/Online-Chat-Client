@@ -5,14 +5,11 @@
   <div [ngClass]="isSender ? 'message__body--sender' : 'message__body--recipient'" class="message__body">
     <p *ngIf="text" class="message__text">{{text}}</p>
     <div *ngIf="attachments && attachments.length > 0" class="message__attachments-container">
-      <div *ngFor="let attachment of attachments" (click)="downloadAttachment(attachment)" class="file-attachment">
-        <img class="file-attachment__icon" draggable="false" src="assets/attachment.svg" alt="attachment">
-        <div class="file-attachment__filename">{{attachment.originalName}}</div>
-        <div class="file-attachment__filesize">{{attachment.contentLength | fileSize}}</div>
-      </div>
-<!--      <div class="image-attachment">-->
-<!--        <img class="image-attachment__content" src="https://localhost:44319/api/Attachments/6" alt="attachment">-->
-<!--      </div>-->
+      <app-attachment
+        *ngFor="let attachment of attachments"
+        [attachment]="attachment"
+        (click)="downloadAttachment(attachment)"
+      ></app-attachment>
     </div>
     <span class="message__time">{{time}}</span>
   </div>
