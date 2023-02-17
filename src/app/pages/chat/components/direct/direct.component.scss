@@ -1,4 +1,5 @@
 @import "flexboxgrid";
+@import "src/scss/mixins/media-queries";
 
 * {
   // Custom scroll
@@ -55,3 +56,12 @@
   overflow-x: hidden;
 }
 
+.right-side {
+  padding: 0
+}
+
+.col-xs-0 {
+  @include breakpoint(xs) {
+    display: none;
+  }
+}

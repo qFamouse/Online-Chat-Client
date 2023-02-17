@@ -16,9 +16,11 @@
     </div>
   </ng-container>
 
-  <ng-container *ngSwitchDefault class="file-attachment">
-    <img class="file-attachment__icon" draggable="false" src="assets/attachment.svg" alt="attachment">
-    <div class="file-attachment__filename">{{attachment.originalName}}</div>
-    <div class="file-attachment__filesize">{{attachment.contentLength | fileSize}}</div>
+  <ng-container *ngSwitchDefault>
+    <div class="file-attachment">
+      <img class="file-attachment__icon" draggable="false" src="assets/attachment.svg" alt="attachment">
+      <div class="file-attachment__filename">{{attachment.originalName}}</div>
+      <div class="file-attachment__filesize">{{attachment.contentLength | fileSize}}</div>
+    </div>
   </ng-container>
 </ng-container>

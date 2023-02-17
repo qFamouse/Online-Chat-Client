@@ -1,5 +1,6 @@
 <div class="direct">
-  <div class="dialogs col-xs-3">
+  <div class="dialogs"
+       [ngClass]="{'col-xs-12 col-sm-4': !openedInterlocutorId, 'col-xs-0 col-sm-3': openedInterlocutorId}">
     <div class="dialogs__search">
       <input type="text" placeholder="Search">
     </div>
@@ -10,7 +11,8 @@
       (onClick)="openConversation(interlocutor.id)"
     ></app-dialog>
   </div>
-  <div class="col-xs-9" style="padding: 0">
+  <div class="right-side"
+       [ngClass]="{'col-sm-8': !openedInterlocutorId, 'col-xs-12 col-sm-9': openedInterlocutorId}">
     <app-conversation
       *ngIf="openedInterlocutorId"
       [conversationTitle]="openedInterlocutorName"
