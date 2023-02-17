@@ -1,12 +1,24 @@
-<div [ngSwitch]="true">
-  <div *ngSwitchCase="attachment.contentType.startsWith('image')">
+<ng-container [ngSwitch]="true">
+  <ng-container *ngSwitchCase="attachment.contentType.startsWith('image')">
     <div class="image-attachment">
       <img class="image-attachment__content" [src]="getSrc() | secure | async" alt="attachment">
     </div>
-  </div>
-  <div *ngSwitchDefault class="file-attachment">
+  </ng-container>
+
+  <ng-container *ngSwitchCase="attachment.contentType.endsWith('pdf')">
+    <div class="pdf-attachment">
+      <pdf-viewer
+        class="pdf-attachment__content"
+        [src]="pdfSource"
+        [original-size]="false"
+        [zoom-scale]="'page-fit'"
+      ></pdf-viewer>
+    </div>
+  </ng-container>
+
+  <ng-container *ngSwitchDefault class="file-attachment">
     <img class="file-attachment__icon" draggable="false" src="assets/attachment.svg" alt="attachment">
     <div class="file-attachment__filename">{{attachment.originalName}}</div>
     <div class="file-attachment__filesize">{{attachment.contentLength | fileSize}}</div>
-  </div>
-</div>
+  </ng-container>
+</ng-container>

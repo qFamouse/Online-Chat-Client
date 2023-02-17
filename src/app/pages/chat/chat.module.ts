@@ -15,6 +15,7 @@ import {
 	CdkMenuTrigger
 } from "@angular/cdk/menu";
 import { AttachmentComponent } from './components/attachment/attachment.component';
+import { PdfViewerModule } from "ng2-pdf-viewer";
 
 @NgModule({
 	imports: [
@@ -26,14 +27,15 @@ import { AttachmentComponent } from './components/attachment/attachment.componen
 		CdkMenuTrigger,
 		CdkMenuItem,
 		CdkMenu,
-		CdkContextMenuTrigger
+		CdkContextMenuTrigger,
+		PdfViewerModule
 	],
 	declarations: [
 		DirectComponent,
 		MessageComponent,
 		DialogComponent,
 		ConversationComponent,
-  AttachmentComponent
+		AttachmentComponent
 	]
 })
 export class ChatModule {}

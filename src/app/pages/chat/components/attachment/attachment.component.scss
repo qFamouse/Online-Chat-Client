@@ -50,3 +50,12 @@
     max-height: 300px;
   }
 }
+
+.pdf-attachment {
+  cursor: pointer;
+
+  &__content {
+    width: 350px;
+    height: 400px;
+  }
+}
