@@ -14,13 +14,7 @@ export class SignalRDMServiceService {
 	messenger$ = new Subject<MessageDto>();
 	deleter$ = new Subject<DeleteMessageDto>();
 
-	constructor(private jwtAuthService: JwtAuthService) {}
-
-	sendMessage(message: SendMessageDto): Promise<MessageDto> {
-		return this.connection.invoke("SendMessage", message);
-	}
-
-	async openConnection() {
+	constructor(private jwtAuthService: JwtAuthService) {
 		this.connection = new SignalR.HubConnectionBuilder()
 			.withUrl(apiSignalrRoutes.direct, {
 				skipNegotiation: true,
@@ -30,9 +24,13 @@ export class SignalRDMServiceService {
 			.withAutomaticReconnect()
 			.build();
 
-		await this.connection.start();
+		this.connection.start();
 		this.receiveMessageHandler();
 		this.deleteMessageHandler();
+	}
+
+	sendMessage(message: SendMessageDto): Promise<MessageDto> {
+		return this.connection.invoke("SendMessage", message);
 	}
 
 	private receiveMessageHandler() {

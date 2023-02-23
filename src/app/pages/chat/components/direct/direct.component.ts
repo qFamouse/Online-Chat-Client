@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Component, OnDestroy } from "@angular/core";
 import { DirectMessageService } from "../../../../shared/modules/api/services/direct-message.service";
 import { Interlocutor } from "../../../../shared/models/dto/interlocutor.dto";
 import { MessageDto } from "../../../../shared/models/dto/message.dto";
@@ -17,7 +17,7 @@ import { DeleteMessageDto } from "../../../../shared/models/dto/delete-message.d
 	templateUrl: "./direct.component.html",
 	styleUrls: ["./direct.component.scss"]
 })
-export class DirectComponent implements OnInit, OnDestroy {
+export class DirectComponent implements OnDestroy {
 	unsubscribe$ = new Subject<void>();
 	subscription: Subscription;
 
@@ -50,8 +50,6 @@ export class DirectComponent implements OnInit, OnDestroy {
 		this.updateInterlocutors();
 
 		// SignalR
-		this.signalRService.openConnection();
-
 		this.subscription.add(
 			this.signalRService.messenger$.subscribe((message: MessageDto) => {
 				let messagesFromSender = this.messageCache.get(message.senderId);
@@ -102,8 +100,6 @@ export class DirectComponent implements OnInit, OnDestroy {
 				}
 			});
 	}
-
-	ngOnInit(): void {}
 
 	updateInterlocutors() {
 		this.directMessageService
