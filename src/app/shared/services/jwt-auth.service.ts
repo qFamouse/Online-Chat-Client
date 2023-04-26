@@ -1,10 +1,12 @@
 import { Injectable } from "@angular/core";
 import { ApiService } from "./api.service";
-import { catchError, map, Observable, of, shareReplay, tap } from "rxjs";
-import { JwtSession } from "../models/dto/jwt-session.dto";
+import { catchError, map, Observable, of, tap } from "rxjs";
 import { JWT_KEYS } from "../constants/storage";
 import { apiUserRoutes } from "../constants/api-routes";
 import { User } from "../models/entities/user.entity";
+import { AuthorizationDto } from "../models/dto/authorization.dto";
+import { TfaDto } from "../models/dto/tfa-dto";
+import { AuthResponseDto } from "../models/dto/auth-response.dto";
 
 @Injectable({
 	providedIn: "root"
@@ -29,11 +31,22 @@ export class JwtAuthService {
 
 		return of(false);
 	}
-	login(email: string, password: string): Observable<JwtSession> {
+	login(email: string, password: string): Observable<AuthorizationDto> {
 		const url = apiUserRoutes.login;
-		return this.apiService.post(url, { email, password }).pipe(
-			tap((res: any) => this.setSession(res)),
-			shareReplay()
+		return this.apiService
+			.post<AuthorizationDto>(url, { email, password })
+			.pipe(
+				tap((res: AuthorizationDto) => this.setSession(res))
+				// shareReplay()
+			);
+	}
+
+	loginTfa(tfa: TfaDto): Observable<AuthResponseDto> {
+		const url = apiUserRoutes.tfaLogin;
+		return this.apiService.post<AuthResponseDto>(url, tfa).pipe(
+			tap((res: AuthResponseDto) => {
+				localStorage.setItem(JWT_KEYS.token, res.token);
+			})
 		);
 	}
 
@@ -44,11 +57,11 @@ export class JwtAuthService {
 
 	logout() {
 		localStorage.removeItem(JWT_KEYS.token);
-		localStorage.removeItem(JWT_KEYS.expiration);
 	}
 
-	private setSession(jwt: JwtSession) {
-		localStorage.setItem(JWT_KEYS.token, jwt.token);
-		localStorage.setItem(JWT_KEYS.expiration, jwt.expires);
+	private setSession(authorization: AuthorizationDto) {
+		if (authorization.token) {
+			localStorage.setItem(JWT_KEYS.token, authorization.token);
+		}
 	}
 }

@@ -4,7 +4,7 @@ import { MatDialog } from "@angular/material/dialog";
 import { ErrorDialogComponent } from "../../../../shared/modules/dialog/components/error-dialog/error-dialog.component";
 import { SignupForm } from "../../models/signup-form.model";
 import { Router } from "@angular/router";
-import { chatPages } from "../../../../shared/constants/pages";
+import { authPages, chatPages } from "../../../../shared/constants/pages";
 import { AuthApiService } from "../../services/auth-api.service";
 import { Subject, takeUntil } from "rxjs";
 
@@ -36,7 +36,17 @@ export class AuthPageComponent implements OnDestroy {
 					this.dialog.open(ErrorDialogComponent, {
 						data: errorHttpResponse.error
 					}),
-				complete: () => this.router.navigateByUrl(chatPages.direct.absolutePath)
+				next: (response: any) => {
+					if (response.isTfaEnabled) {
+						return this.router.navigate([authPages.tfa.absolutePath], {
+							queryParams: {
+								email: form.email
+							}
+						});
+					}
+
+					return this.router.navigateByUrl(chatPages.direct.absolutePath);
+				}
 			});
 	}
 

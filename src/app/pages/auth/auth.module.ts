@@ -9,9 +9,15 @@ import { MatButtonModule } from "@angular/material/button";
 import { DialogModule } from "../../shared/modules/dialog/dialog.module";
 import { HttpClientModule } from "@angular/common/http";
 import { MatIconModule } from "@angular/material/icon";
+import { TfaPageComponent } from "./components/tfa-page/tfa-page.component";
 
 @NgModule({
-	declarations: [AuthPageComponent, LoginFormComponent, SignupFormComponent],
+	declarations: [
+		AuthPageComponent,
+		LoginFormComponent,
+		SignupFormComponent,
+		TfaPageComponent
+	],
 	imports: [
 		CommonModule,
 		MatInputModule,

@@ -1,0 +1,15 @@
+<div class="tfa">
+  <div class="tfa_menu">
+    <div class="tfa_header">
+      <mat-icon class="tfa_icon">lock</mat-icon>
+      <span class="tfa_title">Two-factor Authentication</span>
+    </div>
+
+    <form [formGroup]="twoStepForm" class="tfa_body">
+      <div class="tfa_info">Your account has been configured to use two-factor authentication. Type your 6-digit code below to verify this action</div>
+
+      <input formControlName="twoFactorCode" maxlength="6" class="tfa_input" (input)="input($event)">
+      <mat-error *ngIf="showError">{{errorMessage}}</mat-error>
+    </form>
+  </div>
+</div>

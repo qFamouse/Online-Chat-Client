@@ -1,7 +1,8 @@
 import { Page } from "../models/layout.model";
 
 export const authPages = {
-	auth: new Page("Auth", "auth", "auth")
+	auth: new Page("Auth", "auth", "auth"),
+	tfa: new Page("Two Factor Authentication", "tfa", "tfa")
 };
 
 export const chatPages = {

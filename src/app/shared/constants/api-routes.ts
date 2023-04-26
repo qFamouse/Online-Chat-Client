@@ -5,6 +5,7 @@ const serverUrl = environment.serverUrl;
 
 export const apiUserRoutes = {
 	login: `${apiUrl}/Users/login`,
+	tfaLogin: `${apiUrl}/Users/tfa-login`,
 	signup: `${apiUrl}/Users/signup`,
 	authenticate: `${apiUrl}/Users/auth`,
 	about: `${apiUrl}/Users/about`,
